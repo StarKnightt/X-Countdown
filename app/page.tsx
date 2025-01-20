@@ -1,47 +1,38 @@
 "use client"
 
-import { Header as HeaderComponent } from "@/components/header"
+import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 import dynamic from "next/dynamic"
-import { Twitter, Github } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { Background } from "@/components/background"
 
-const CountdownComponent = dynamic(() => import("@/components/countdown"), { ssr: false })
-
-export function Header() {
-  return (
-    <header className="border-b">
-      <div className="container flex h-14 items-center justify-between px-4">
-        <div className="flex items-center space-x-2">
-          <Twitter className="h-5 w-5" />
-          <span className="font-semibold">X Payout Countdown</span>
-        </div>
-
-        <div className="flex items-center space-x-4">
-          <ThemeToggle />
-          <a
-            href="https://github.com/StarKnightt/X-Countdown"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center space-x-2 rounded-lg bg-zinc-100 px-4 py-2 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700"
-          >
-            <Github className="h-4 w-4" />
-            <span>Give a Star ⭐</span>
-          </a>
-        </div>
-      </div>
-    </header>
+const CountdownComponent = dynamic(() => import("@/components/countdown"), { 
+  ssr: false,
+  loading: () => (
+    <div className="w-full max-w-md animate-pulse">
+      <div className="h-[200px] rounded-xl bg-muted"></div>
+    </div>
   )
-}
+})
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted relative overflow-hidden flex flex-col">
       <Background />
-      <Header />
-      <main className="container relative flex flex-col items-center justify-center px-4 py-10">
-        <CountdownComponent />
-      </main>
+      <div className="relative z-10 flex-1 flex flex-col">
+        <Header />
+        <main className="container mx-auto px-4 flex-1">
+          <div className="flex flex-col items-center justify-center py-20 text-center">
+            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+              X Payout Countdown
+            </h1>
+            <p className="mb-12 max-w-[600px] text-lg text-muted-foreground">
+              Track the time remaining until your next X (Twitter) creator payout. Never miss a payment date again.
+            </p>
+            <CountdownComponent />
+          </div>
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }

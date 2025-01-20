@@ -17,8 +17,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <body 
+        className={`${inter.className} antialiased min-h-screen bg-background`}
+        suppressHydrationWarning
+      >
+        <ThemeProvider 
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          storageKey="x-payout-theme"
+          themes={["light", "dark", "system"]}
+        >
           {children}
         </ThemeProvider>
       </body>
