@@ -1,13 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getNextPayoutDate } from "@/utils/payout-dates"
 
 function useCountdown(targetDate: Date) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
-
-  function calculateTimeLeft() {
+  const calculateTimeLeft = useCallback(() => {
     const difference = targetDate.getTime() - new Date().getTime()
 
     if (difference <= 0) {
@@ -20,7 +18,9 @@ function useCountdown(targetDate: Date) {
       minutes: Math.floor((difference / 1000 / 60) % 60),
       seconds: Math.floor((difference / 1000) % 60),
     }
-  }
+  }, [targetDate])
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
   useEffect(() => {
     const timer = setInterval(() => {
