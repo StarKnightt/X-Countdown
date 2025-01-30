@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Real-time countdown tracker for X (Twitter) creator payouts. Never miss your next payment date. Simple, accurate, and always up-to-date.",
   keywords: "X payout, Twitter payout, creator payout, X creator payment, Twitter creator earnings, X earnings date, Twitter payment schedule",
   verification: {
-    google: "YbwqflKeFVNWu9aIE8BTmKex8F5eILiuixVzqyRAk2A",
+    google: "aU21EQGcGA9SK59xrqhc1njpMkRJABeo3iO-3R3i_sc",
   },
   openGraph: {
     title: "X Payout Countdown | Track Your Next Payment",
