@@ -26,7 +26,7 @@ export default function Home() {
               X Payout Countdown
             </h1>
             <p className="mb-8 sm:mb-12 max-w-[90vw] sm:max-w-[600px] text-base sm:text-lg text-muted-foreground px-4">
-              Track the time remaining until your next X (Twitter) creator payout. Never miss a payment date again.
+              Track the time remaining until your next X (Twitter) creator payout.
             </p>
             <CountdownComponent />
           </div>
@@ -36,4 +36,3 @@ export default function Home() {
     </div>
   )
 }
-
