@@ -22,14 +22,21 @@ function getSecondAndFourthSaturdays(year: number) {
     return dates;
   }
   
-  // Get payout dates for current and next year to ensure we always have future dates
+  // Get payout dates for current year and 3 years into the future
   const currentYear = new Date().getFullYear();
   export const PAYOUT_DATES = [
     ...getSecondAndFourthSaturdays(currentYear),
-    ...getSecondAndFourthSaturdays(currentYear + 1)
-  ];
+    ...getSecondAndFourthSaturdays(currentYear + 1),
+    ...getSecondAndFourthSaturdays(currentYear + 2),
+    ...getSecondAndFourthSaturdays(currentYear + 3)
+  ].sort((a, b) => a.getTime() - b.getTime());
   
   export function getNextPayoutDate(currentDate = new Date()) {
     return PAYOUT_DATES.find((date) => date > currentDate) || PAYOUT_DATES[0];
+  }
+  
+  // Helper function to get all payout dates for a specific year
+  export function getPayoutDatesForYear(year: number) {
+    return PAYOUT_DATES.filter(date => date.getFullYear() === year);
   }
 

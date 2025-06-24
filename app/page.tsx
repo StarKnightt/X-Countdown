@@ -4,6 +4,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import dynamic from "next/dynamic"
 import { Background } from "@/components/background"
+import { PayoutCalendar } from "@/components/payout-calendar"
 
 const CountdownComponent = dynamic(() => import("@/components/countdown"), { 
   ssr: false,
@@ -29,6 +30,9 @@ export default function Home() {
               Track the time remaining until your next X (Twitter) creator payout.
             </p>
             <CountdownComponent />
+            <div className="mt-12">
+              <PayoutCalendar />
+            </div>
           </div>
         </main>
         <Footer />
