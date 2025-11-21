@@ -1,29 +1,28 @@
-import "./globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
+import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://x-countdown.vercel.app/'),
-  title: "X Payout Countdown | Track Your Next Twitter/X Creator Payment",
-  description: "Real-time countdown tracker for X (Twitter) creator payouts. Never miss your next payment date. Simple, accurate, and always up-to-date.",
-  keywords: "X payout, Twitter payout, creator payout, X creator payment, Twitter creator earnings, X earnings date, Twitter payment schedule",
-  verification: {
-    google: "aU21EQGcGA9SK59xrqhc1njpMkRJABeo3iO-3R3i_sc",
-  },
+  title: "X Payout Countdown | Beautiful Timer for Next Payout",
+  description: "A stunning dark-themed countdown timer for X (Twitter) creator payouts with smooth animations and real-time updates",
+  keywords: ["X", "Twitter", "payout", "countdown", "timer", "creator"],
+  authors: [{ name: "X Countdown Team" }],
+  creator: "X Countdown",
+  publisher: "X Countdown",
+  robots: "index, follow",
   openGraph: {
-    title: "X Payout Countdown | Track Your Next Payment",
-    description: "Real-time countdown tracker for X (Twitter) creator payouts",
+    title: "X Payout Countdown",
+    description: "Beautiful countdown timer for next X payout",
     type: "website",
-    url: "https://x-countdown.vercel.app/",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "X Payout Countdown",
-    description: "Track your next X (Twitter) creator payout in real-time",
-  }
+    description: "Beautiful countdown timer for next X payout",
+  },
 }
 
 export default function RootLayout({
@@ -33,20 +32,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body 
-        className={`${inter.className} antialiased min-h-screen bg-background`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider 
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="x-payout-theme"
-          themes={["light", "dark", "system"]}
-        >
-          {children}
-        </ThemeProvider>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (localStorage.getItem('theme') === 'dark') {
+                  document.documentElement.classList.add('dark')
+                } else {
+                  document.documentElement.classList.remove('dark')
+                }
+              } catch (_) {}
+            `,
+          }}
+        />
+      </head>
+      <body className={`${inter.className} overflow-hidden transition-colors duration-300`}>
+        {children}
       </body>
     </html>
   )

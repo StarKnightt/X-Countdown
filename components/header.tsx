@@ -1,5 +1,5 @@
 import { Twitter, Github, Coffee } from "lucide-react"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from "./theme-selector"
 
 export function Header() {
   return (
