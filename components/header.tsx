@@ -1,5 +1,6 @@
-import { Twitter, Github, Coffee } from "lucide-react"
-import { ThemeToggle } from "./theme-selector"
+import { Twitter, Github, Coffee } from "lucide-react";
+import { ThemeToggle } from "./theme-selector";
+import { PayoutCalendar } from "./payout-calendar";
 
 export function Header() {
   return (
@@ -7,11 +8,14 @@ export function Header() {
       <div className="container flex h-14 items-center justify-between px-4">
         <div className="flex items-center space-x-2">
           <Twitter className="h-5 w-5" />
-          <span className="font-semibold hidden sm:inline">X Payout Countdown</span>
+          <span className="font-semibold hidden sm:inline">
+            X Payout Countdown
+          </span>
           <span className="font-semibold sm:hidden">X Payout</span>
         </div>
-        
+
         <div className="flex items-center space-x-2 sm:space-x-4">
+          <PayoutCalendar />
           <ThemeToggle />
           <a
             href="https://buymeacoffee.com/prasen"
@@ -36,5 +40,5 @@ export function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
